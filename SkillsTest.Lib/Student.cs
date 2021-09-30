@@ -13,6 +13,6 @@ namespace SkillsTest.Lib
 
         public String Email { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<X_Student_Course> StudentCourses { get; set; }
     }
 }

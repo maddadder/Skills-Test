@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillsTest.Lib;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SkillsTest.Tests
@@ -36,13 +37,23 @@ namespace SkillsTest.Tests
             {
                 foreach (var iteration in Enumerable.Range(1, 100))
                 {
-                    db.Students.Add(new Student
+                    var student = new Student
                     {
                         Id = iteration,
                         FirstName = "Test",
                         LastName = $"Student {iteration}",
-                        Courses = db.Courses.Where(course => iteration % course.Id == 0).ToList()
-                    });
+                    };
+                    var StudentCourses = new List<X_Student_Course>();
+                    foreach(var course in db.Courses.Where(course => iteration % course.Id == 0).ToList())
+                    {
+                        X_Student_Course studentCourse = new X_Student_Course();
+                        studentCourse.CourseId = course.Id;
+                        studentCourse.Course = course;
+                        studentCourse.StudentId = iteration;
+                        StudentCourses.Add(studentCourse);
+                    }
+                    student.StudentCourses = StudentCourses;
+                    db.Students.Add(student);
                 }
 
                 db.SaveChanges();
