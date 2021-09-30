@@ -11,7 +11,7 @@ namespace SkillsTest.Lib
     {
         Course GetById(int id);
         Task<IList<Course>> GetByPage<T>(Expression<Func<Course, bool>> predicate, Expression<Func<Course, T>> orderBy, int pageSize=0, int pageNumber=0);
-        Task<IList<X_Student_Course>> GetStudentCoursesByPage(string courseName);
+        Task<IList<X_Student_Course>> GetStudentCoursesByName(string courseName);
     }
 
     public class DbCourseAPI : ICourseAPI

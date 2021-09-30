@@ -43,7 +43,7 @@ namespace SkillsTest.Tests
         [Fact]
         public async Task Find_all_students_enrolled_in_specified_course(){
 
-            var queryResults = await api.GetStudentCoursesByPage("The Cosmos: An Introduction");
+            var queryResults = await api.GetStudentCoursesByName("The Cosmos: An Introduction");
             foreach(var row in queryResults)
             {
                 Console.WriteLine(row.Student.LastName);
